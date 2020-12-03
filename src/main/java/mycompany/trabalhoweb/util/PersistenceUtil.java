@@ -11,7 +11,7 @@ import org.eclipse.persistence.sessions.Session;
 
 public class PersistenceUtil {
 
-    private static final String PERSISTENCE_UNIT_NAME = "hospitalPU";
+    private static final String PERSISTENCE_UNIT_NAME = "enade";
     private static EntityManagerFactory FACTORY;
     private static ThreadLocal<EntityManager> MANAGER = new ThreadLocal<EntityManager>();
     private static Session session;

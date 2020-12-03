@@ -18,21 +18,6 @@ public class TipoQuestaoDAO {
         return tipoQuestaoDAO;
     }
 
-    public Tbtipoquestao buscar(String nome) {
-        EntityManager em = PersistenceUtil.getEntityManager();
-        Query query = em.createQuery("select a from TipoFuncionario a where a.nomeTipoFuncionario =:nome ");
-        query.setParameter("nome", nome);
-
-        List<Tbtipoquestao> tipoQuestao = query.getResultList();
-        if (tipoQuestao != null && tipoQuestao.size() > 0) {
-            return tipoQuestao.get(0);
-        }
-
-        return null;
-    }
-    
-    
-    
     public Tbtipoquestao buscarPorId(long id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         Query query = em.createQuery("select tq from tbtipoquestao tq where tq.idtipoQuestao =:id ");

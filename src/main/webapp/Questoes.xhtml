@@ -1,16 +1,149 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Questões</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-  
-    </body>
-</html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <h2 class="page-header">Gerenciar Questões</h2>
+        <br/>
+        <h:form id="formPrincipal">
+            <p:messages id="messages" showDetail="true" closable="true" />
+
+            <div align="center">
+                <p:dataTable var="lista" value="#{questaoBean.questoes}"
+                             id="tabela" emptyMessage="Nenhum registro encontrado"
+                             paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" rowsPerPageTemplate="5,10,25,50,100,9999" style="width:100%">
+
+                    <p:column headerText="Código" sortBy="#{lista.idQuestao}" filterBy="#{lista.idQuestao}">
+                        <h:outputText value="#{lista.idQuestao}" />
+                    </p:column>
+                    <p:column headerText="Descrição" sortBy="#{lista.descricaoQuestao}" filterBy="#{lista.descricaoQuestao}">
+                        <h:outputText value="#{lista.descricaoQuestao}" />
+                    </p:column>
+                    <p:column headerText="Opcao A" sortBy="#{lista.alternativaA}" filterBy="#{lista.alternativaA}">
+                        <h:outputText value="#{lista.alternativaA}" />
+                    </p:column>
+                    <p:column headerText="Opcao B" sortBy="#{lista.alternativaB}" filterBy="#{lista.alternativaB}">
+                        <h:outputText value="#{lista.alternativaB}" />
+                    </p:column>
+                    <p:column headerText="Opcao C" sortBy="#{lista.alternativaC}" filterBy="#{lista.alternativaC}">
+                        <h:outputText value="#{lista.alternativaC}" />
+                    </p:column>
+                    <p:column headerText="Opcao D" sortBy="#{lista.alternativaD}" filterBy="#{lista.alternativaD}">
+                        <h:outputText value="#{lista.alternativaD}" />
+                    </p:column>
+                    <p:column headerText="Opcao E" sortBy="#{lista.alternativaE}" filterBy="#{lista.alternativaE}">
+                        <h:outputText value="#{lista.alternativaE}" />
+                    </p:column>
+                    <p:column headerText="Opcao Correta" sortBy="#{lista.questaoCorreta}" filterBy="#{lista.questaoCorreta}">
+                        <h:outputText value="#{lista.questaoCorreta}" />
+                    </p:column>
+                    <p:column headerText="Estado da questão" sortBy="#{lista.estadoQuestao}" filterBy="#{lista.estadoQuestao}">
+                        <h:outputText value="#{lista.estadoQuestao}" />
+                    </p:column>
+                    <p:column headerText="Tipo de Questão" sortBy="#{lista.tbTipoQuestaoidTipoQuestao}" filterBy="#{lista.tbTipoQuestaoidTipoQuestao}">
+                        <h:outputText value="#{lista.tbTipoQuestaoidTipoQuestao}" />
+                    </p:column>
+                    <p:column headerText="Opções" exportable="false">
+                        <center>
+                            <p:commandButton icon="ui-icon-pencil" value="Editar" onclick="PF('record').show();"> 
+                                <f:setPropertyActionListener target="#{questaoBean.questao}"
+                                                             value="#{lista}" />    
+                            </p:commandButton>
+
+                            <p:commandButton icon="ui-icon-trash" value="Anular" onclick="PF('remove').show();"> 
+                                <f:setPropertyActionListener target="#{questaoBean.questao}"
+                                                             value="#{lista}" />
+                            </p:commandButton> 
+                        </center>
+                    </p:column>
+                </p:dataTable>
+
+                <p:column>
+                    <p:commandButton icon="ui-icon-plus" value="Novo" onclick="PF('record').show();">  
+                    </p:commandButton> 
+                </p:column>
+
+            </div>
+
+            <div align="center">
+                <h3>Exportar dados da página</h3>
+
+                <h:commandLink>
+                    <p:graphicImage name="images/exports/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="tabela" fileName="arq" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="images/exports/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="tabela" fileName="arq"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="images/exports/csv.png" width="24"/>
+                    <p:dataExporter type="csv" target="tabela" fileName="arq" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="images/exports/xml.png" width="24"/>
+                    <p:dataExporter type="xml" target="tabela" fileName="arq" />
+                </h:commandLink>
+
+            </div>
+
+            <p:dialog header="Novo" widgetVar="record" modal="false" focus="descricao">
+
+                <p:panelGrid id="panelRecord" columns="2"> 
+                        Descrição
+                        <p:inputText id="descricao" value="#{questaoBean.questao.descricaoQuestao}" />
+                        Opção A:
+                        <p:inputText id="A" value="#{questaoBean.questao.alternativaA}" />
+                        Opção B:
+                        <p:inputText id="B" value="#{questaoBean.questao.alternativaB}" />
+                        Opção C:
+                        <p:inputText id="C" value="#{questaoBean.questao.alternativaC}" />
+                        Opção D:
+                        <p:inputText id="D" value="#{questaoBean.questao.alternativaD}" />
+                        Opção E:
+                        <p:inputText id="E" value="#{questaoBean.questao.alternativaE}" />
+                        Opção Correta:
+                        <p:inputText id="opcaoCorreta" value="#{questaoBean.questao.questaoCorreta}" />
+                        Estado da questão:
+                        <p:inputText id="estadoQuestao" value="#{questaoBean.questao.estadoQuestao}" />
+                        Tipo da Questão:
+                    <p:selectOneMenu id="tipoQuestao"
+                                     value="#{questaoBean.questao.tbTipoQuestaoidTipoQuestao}"
+                                             converter="tipoQuestaoConverter"
+                                             required="true"
+                                             requiredMessage="O tipo da questão não foi selecionado"
+                                             filter="true"
+                                             filterMatchMode="contains">
+                                
+                        <f:selectItem itemLabel="Selecione o tipo da questão"
+                                      itemDisabled="true" />
+
+                    <f:selectItems value="#{questaoBean.questao}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+        
+                <br/>
+                <p:commandButton value="Salvar"  
+                                 actionListener="#{questaoBean.salvar}" onclick="record.hide()" alt="Record"/> 
+            </p:dialog>
+
+            <p:dialog header="Deletar" widgetVar="remove" modal="false"> 
+                Você tem certeza?
+                <p:commandButton value="Anular"  
+                                 actionListener="#{questaoBean.trocaStatus}" onclick="remove.hide()" alt="Anular" /> 
+            </p:dialog>
+            
+        </h:form>
+
+    </ui:define>
+
+</ui:composition> 
+
