@@ -77,6 +77,10 @@ public class Tbusuario implements Serializable {
         this.emailUsuario = emailUsuario;
         this.senhaUsuario = senhaUsuario;
     }
+        public Tbusuario(String emailUsuario, String senhaUsuario) {
+        this.emailUsuario = emailUsuario;
+        this.senhaUsuario = senhaUsuario;
+    }
 
     public Long getIdUsuario() {
         return idUsuario;

@@ -36,12 +36,9 @@ public class Tbtipoquestao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "idTipoQuestao")
     private Integer idTipoQuestao;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size( max = 45)
     @Column(name = "nomeTipoQuestaocol")
     private String nomeTipoQuestaocol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbTipoQuestaoidTipoQuestao")

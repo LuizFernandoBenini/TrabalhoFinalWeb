@@ -20,7 +20,7 @@ public class TipoQuestaoDAO {
 
     public Tbtipoquestao buscarPorId(long id) {
         EntityManager em = PersistenceUtil.getEntityManager();
-        Query query = em.createQuery("select tq from tbtipoquestao tq where tq.idtipoQuestao =:id ");
+        Query query = em.createQuery("select tq from Tbtipoquestao tq where tq.idTipoQuestao =:id ");
         query.setParameter("id", id);
 
         List<Tbtipoquestao> tipoQuestao = query.getResultList();
@@ -33,7 +33,7 @@ public class TipoQuestaoDAO {
 
     public List<Tbtipoquestao> buscarTodos() {
         EntityManager em = PersistenceUtil.getEntityManager();
-        Query query = em.createQuery("from tbtipoquestao As tq");
+        Query query = em.createQuery("from Tbtipoquestao As tq");
         return query.getResultList();
     }
 
@@ -63,7 +63,7 @@ public class TipoQuestaoDAO {
     public void removeAll() {
         EntityManager em = PersistenceUtil.getEntityManager();
         em.getTransaction().begin();
-        Query query = em.createQuery(" delete from tbtipoquestao ");
+        Query query = em.createQuery(" delete from Tbtipoquestao ");
         query.executeUpdate();
         em.getTransaction().commit();
     }

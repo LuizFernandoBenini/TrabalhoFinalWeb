@@ -31,8 +31,7 @@ public class QuestaoBean implements Serializable {
     }
   
 
-    public void salvar(ActionEvent actionEvent) {
-     
+    public void salvar(ActionEvent actionEvent) {   
         new QuestaoDAO().persistir(questao);
         questoes = new QuestaoDAO().buscarTodos();
         questao = new Tbquestao();
@@ -58,6 +57,22 @@ public class QuestaoBean implements Serializable {
 
     public void setQuestoes(List questoes) {
         this.questoes = questoes;
+    }
+
+    public Tbtipoquestao getTipoQuestao() {
+        return tipoQuestao;
+    }
+
+    public void setTipoQuestao(Tbtipoquestao tipoQuestao) {
+        this.tipoQuestao = tipoQuestao;
+    }
+
+    public List getTiposQuestao() {
+        return tiposQuestao;
+    }
+
+    public void setTiposQuestao(List tiposQuestao) {
+        this.tiposQuestao = tiposQuestao;
     }
     
     

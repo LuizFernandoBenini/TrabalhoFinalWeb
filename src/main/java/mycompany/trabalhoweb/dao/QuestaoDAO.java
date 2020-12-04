@@ -21,7 +21,7 @@ public class QuestaoDAO {
    
     public Tbquestao buscarPorId(long id) {
         EntityManager em = PersistenceUtil.getEntityManager();
-        Query query = em.createQuery("select q from tbquestao q where q.idQuestao =:id ");
+        Query query = em.createQuery("select q from Tbquestao q where q.idQuestao =:id ");
         query.setParameter("id", id);
 
         List<Tbquestao> questao = query.getResultList();
@@ -34,7 +34,7 @@ public class QuestaoDAO {
 
     public List<Tbquestao> buscarTodos() {
         EntityManager em = PersistenceUtil.getEntityManager();
-        Query query = em.createQuery("from tbquestao As q");
+        Query query = em.createQuery("from Tbquestao As q");
         return query.getResultList();
     }
 

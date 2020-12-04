@@ -41,13 +41,9 @@ public class Tbquestao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "idQuestao")
     private Integer idQuestao;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "descricaoQuestao")
     private String descricaoQuestao;
     @Size(max = 45)
@@ -67,8 +63,6 @@ public class Tbquestao implements Serializable {
     private String alternativaE;
     @Column(name = "questaoCorreta")
     private Character questaoCorreta;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "estadoQuestao")
     private short estadoQuestao;
     @ManyToMany(mappedBy = "tbquestaoList")

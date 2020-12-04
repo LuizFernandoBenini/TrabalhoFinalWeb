@@ -98,6 +98,8 @@
             <p:dialog header="Novo" widgetVar="record" modal="false" focus="descricao">
 
                 <p:panelGrid id="panelRecord" columns="2"> 
+                        Identificador
+                        <p:inputText id="id" value="#{questaoBean.questao.idQuestao}" />
                         Descrição
                         <p:inputText id="descricao" value="#{questaoBean.questao.descricaoQuestao}" />
                         Opção A:
@@ -115,19 +117,19 @@
                         Estado da questão:
                         <p:inputText id="estadoQuestao" value="#{questaoBean.questao.estadoQuestao}" />
                         Tipo da Questão:
-                    <p:selectOneMenu id="tipoQuestao"
-                                     value="#{questaoBean.questao.tbTipoQuestaoidTipoQuestao}"
-                                             converter="tipoQuestaoConverter"
-                                             required="true"
-                                             requiredMessage="O tipo da questão não foi selecionado"
-                                             filter="true"
-                                             filterMatchMode="contains">
-                                
-                        <f:selectItem itemLabel="Selecione o tipo da questão"
-                                      itemDisabled="true" />
+                        <p:selectOneMenu id="tipoQuestao"
+                                         value="#{questaoBean.questao.tbTipoQuestaoidTipoQuestao}"
+                                                 converter="tipoQuestaoConverter"
+                                                 required="true"
+                                                 requiredMessage="O tipo da questão não foi selecionado"
+                                                 filter="true"
+                                                 filterMatchMode="contains">
 
-                    <f:selectItems value="#{questaoBean.questao}"/>
-                    </p:selectOneMenu>
+                            <f:selectItem itemLabel="Selecione o tipo da questão"
+                                          itemDisabled="true" />
+
+                            <f:selectItems value="#{questaoBean.tiposQuestao}"/>
+                        </p:selectOneMenu>
                 </p:panelGrid>
         
                 <br/>
